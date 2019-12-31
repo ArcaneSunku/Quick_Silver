@@ -23,6 +23,7 @@ public class Assets {
 
         m_ImageCache.putIfAbsent("Player", Loader.loadImage("stick.png"));
         m_ImageCache.putIfAbsent("Tiles", Loader.loadImage("tiles.png"));
+        m_ImageCache.putIfAbsent("Logo", Loader.loadImage("logo.png"));
 
         m_FontCache = Cache.newInstance(4);
 

@@ -98,9 +98,6 @@ public class InGameScreen extends Screen {
         }
 
         m_Player.draw(g);
-
-        g.setColor(Color.RED);
-        g.drawLine((int) (m_Player.x + m_Player.width / 2), (int) (m_Player.y + m_Player.height / 2), (int) Handler.getMouseX(), (int) Handler.getMouseY());
     }
 
 }

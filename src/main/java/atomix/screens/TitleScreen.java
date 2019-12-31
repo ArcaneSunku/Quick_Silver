@@ -1,5 +1,7 @@
 package atomix.screens;
 
+import atomix.Assets;
+import atomix.graphics.Sprite;
 import atomix.handlers.Handler;
 import atomix.handlers.ScreenHandler;
 
@@ -12,25 +14,56 @@ import java.awt.event.KeyEvent;
  */
 public class TitleScreen extends Screen {
 
+    private Sprite m_Logo;
+    private boolean m_Falling;
+
     @Override
     public void init() {
+        m_Logo = new Sprite(Assets.getImage("Logo"));
 
+        m_Logo.width = m_Logo.getImage().getWidth() * 2;
+        m_Logo.height = m_Logo.getImage().getHeight() * 2;
+
+        m_Logo.x = (Handler.getWidth() - m_Logo.width) / 2f;
+        m_Logo.y = -m_Logo.height * 2;
+
+        m_Falling = true;
     }
 
     @Override
     public void update() {
+        if(m_Logo.y > 0) {
+            if (m_Logo.angle >= 360 || m_Logo.angle <= -360) {
+                m_Logo.angle = Math.abs(360);
+            } else {
+                m_Logo.angle -= 8;
+            }
+        }
+
+        if(m_Logo.y > (Handler.getHeight() - m_Logo.height) / 2f) {
+            m_Logo.y = (Handler.getHeight() - m_Logo.height) / 2f;
+            m_Falling = false;
+        }
+
         if(Handler.keyJustPressed(KeyEvent.VK_ESCAPE))
             Handler.stopRunning();
 
-        if(Handler.keyJustPressed(KeyEvent.VK_SPACE))
-            ScreenHandler.setScreen(1);
+        if(!m_Falling) {
+            if (Handler.keyJustPressed(KeyEvent.VK_SPACE))
+                ScreenHandler.setScreen(1);
 
-        if(Handler.keyJustPressed(KeyEvent.VK_BACK_SPACE))
-            ScreenHandler.setScreen(2);
+            if (Handler.keyJustPressed(KeyEvent.VK_BACK_SPACE))
+                ScreenHandler.setScreen(2);
+        } else {
+            m_Logo.y += 2.25;
+
+            if (Handler.keyJustPressed(KeyEvent.VK_SPACE))
+                m_Logo.y = (Handler.getHeight() - m_Logo.height) / 2f;
+        }
     }
 
     @Override
     public void render(Graphics2D g) {
-
+        m_Logo.draw(g);
     }
 }
