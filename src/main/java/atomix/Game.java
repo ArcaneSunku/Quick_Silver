@@ -53,7 +53,7 @@ public class Game implements Runnable {
 
         while(m_Running) {
             if(m_Window.hasClosed() || m_Window.isClosing())
-                m_Running = false;
+                stopRunning();
 
             long now = System.nanoTime();
             delta += (now - last_time) / nanoseconds_per_tick;
@@ -108,7 +108,7 @@ public class Game implements Runnable {
     }
 
     private void init() {
-        m_Handler = new Handler(m_Window);
+        m_Handler = new Handler(this, m_Window);
         m_ScreenHandler = new ScreenHandler();
         Assets.initialize();
 
@@ -143,8 +143,7 @@ public class Game implements Runnable {
         bufferStrategy.show();
     }
 
-    public int WindowWidth() { return m_Window.getWidth(); }
-    public int WindowHeight() { return m_Window.getHeight(); }
+    public void stopRunning() { m_Running = false; }
 
     public int getWidth() { return WIDTH; }
     public int getHeight() { return HEIGHT; }

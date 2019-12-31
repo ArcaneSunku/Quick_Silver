@@ -3,11 +3,11 @@ package atomix.screens;
 import atomix.Assets;
 import atomix.handlers.Handler;
 import atomix.handlers.ScreenHandler;
-import com.sun.glass.events.KeyEvent;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 /**
  * @author ArcaneSunku
@@ -35,15 +35,13 @@ public class CreditScreen extends Screen {
         m_Timer = -10;
 
         m_Color = Color.WHITE;
-
-        System.out.println("Credits initialized...");
     }
 
     @Override
     public void update() {
         m_Timer++;
 
-        if(Handler.keyJustPressed(KeyEvent.VK_BACKSPACE))
+        if(Handler.keyJustPressed(KeyEvent.VK_BACK_SPACE))
             ScreenHandler.setScreen(0);
     }
 

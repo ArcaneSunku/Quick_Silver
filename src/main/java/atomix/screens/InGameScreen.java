@@ -10,7 +10,7 @@ public class InGameScreen extends Screen {
 
     @Override
     public void init() {
-        System.out.println("InGame Initialized...");
+
     }
 
     @Override

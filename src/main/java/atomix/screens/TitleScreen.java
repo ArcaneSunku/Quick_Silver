@@ -14,16 +14,19 @@ public class TitleScreen extends Screen {
 
     @Override
     public void init() {
-        System.out.println("Title Initialized...");
+
     }
 
     @Override
     public void update() {
-        if(Handler.keyJustPressed(KeyEvent.VK_SPACE)) {
+        if(Handler.keyJustPressed(KeyEvent.VK_ESCAPE))
+            Handler.stopRunning();
+
+        if(Handler.keyJustPressed(KeyEvent.VK_SPACE))
             ScreenHandler.setScreen(1);
-        } else if(Handler.keyJustPressed(KeyEvent.VK_BACK_SPACE)) {
+
+        if(Handler.keyJustPressed(KeyEvent.VK_BACK_SPACE))
             ScreenHandler.setScreen(2);
-        }
     }
 
     @Override

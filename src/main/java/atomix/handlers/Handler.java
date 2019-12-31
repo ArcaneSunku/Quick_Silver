@@ -1,5 +1,6 @@
 package atomix.handlers;
 
+import atomix.Game;
 import atomix.graphics.Window;
 
 /**
@@ -8,10 +9,12 @@ import atomix.graphics.Window;
  */
 public class Handler {
 
+    private static Game m_Game;
     private static Window m_Window;
     private static InputHandler m_Input;
 
-    public Handler(Window window) {
+    public Handler(Game game, Window window) {
+        m_Game = game;
         m_Window = window;
         m_Input = new InputHandler(m_Window);
     }
@@ -19,6 +22,8 @@ public class Handler {
     public static void update() {
         m_Input.update();
     }
+
+    public static void stopRunning() { m_Game.stopRunning(); }
 
     public static int getWidth() { return m_Window.getWidth(); }
     public static int getHeight() { return m_Window.getHeight(); }
