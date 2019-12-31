@@ -3,7 +3,7 @@ package atomix;
 import atomix.graphics.Window;
 import atomix.handlers.Handler;
 import atomix.handlers.ScreenHandler;
-import atomix.screens.CreditScreen;
+import atomix.screens.AboutScreen;
 import atomix.screens.InGameScreen;
 import atomix.screens.TitleScreen;
 
@@ -30,6 +30,8 @@ public class Game implements Runnable {
 
     private int m_Frames, m_Ticks;
     private boolean m_Running;
+
+    private String[] m_Screens;
 
     public Game() {
         m_Window = new Window("Quick Silver", WIDTH, HEIGHT);
@@ -65,6 +67,12 @@ public class Game implements Runnable {
 
                 ticks++;
                 delta -= 1;
+            }
+
+            try {
+                Thread.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
             if(should_render) {
@@ -114,15 +122,20 @@ public class Game implements Runnable {
 
         m_ScreenHandler.addScreen(new TitleScreen());
         m_ScreenHandler.addScreen(new InGameScreen());
-        m_ScreenHandler.addScreen(new CreditScreen());
+        m_ScreenHandler.addScreen(new AboutScreen());
         ScreenHandler.setScreen(0);
+        m_Screens = new String[] {
+                "Title",
+                "In Game",
+                "About"
+        };
 
         m_Window.display();
     }
 
     private void update() {
         m_ScreenHandler.update();
-        m_Window.getFrame().setTitle(m_Window.getTitle() + String.format(" | FPS: %d, TPF: %d", m_Frames, m_Ticks));
+        m_Window.getFrame().setTitle(m_Window.getTitle() + String.format(" | FPS: %d, TPF: %d | Screen: %s", m_Frames, m_Ticks, m_Screens[ScreenHandler.getScreen()]));
     }
 
     private void render() {

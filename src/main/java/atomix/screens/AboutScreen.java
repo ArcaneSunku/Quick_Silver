@@ -13,18 +13,18 @@ import java.awt.event.KeyEvent;
  * @author ArcaneSunku
  * @since 12/30/2019
  */
-public class CreditScreen extends Screen {
+public class AboutScreen extends Screen {
 
     private Color m_Color;
 
-    private String[] m_Credits;
+    private String[] m_About;
     private String m_ToGoBack;
 
     private int m_Timer;
 
     @Override
     public void init() {
-        m_Credits = new String[] {
+        m_About = new String[] {
                 "Quick-Silver is a project developed by Tahnner Shambaugh(ArcaneSunku)\n",
                 "in hopes of better understanding Java and it's inner functions.\n",
                 "It was also created in hopes of helping my understanding\n",
@@ -32,9 +32,9 @@ public class CreditScreen extends Screen {
         };
 
         m_ToGoBack = "Press BackSpace to return to Title.";
-        m_Timer = -10;
+        m_Timer = 0;
 
-        m_Color = Color.WHITE;
+        m_Color = Color.BLACK;
     }
 
     @Override
@@ -50,14 +50,14 @@ public class CreditScreen extends Screen {
         g.setColor(Color.WHITE);
         g.setFont(Assets.getFont("vcr", 20f));
 
-        for(int i = 0; i < m_Credits.length; i++) {
+        for(int i = 0; i < m_About.length; i++) {
             int fontHeight = g.getFontMetrics().getHeight();
-            int lineWidth = g.getFontMetrics().stringWidth(m_Credits[i]);
+            int lineWidth = g.getFontMetrics().stringWidth(m_About[i]);
 
-            g.drawString(m_Credits[i], (Handler.getWidth() - lineWidth) / 2, Handler.getHeight() / 4 + (24 * i) + fontHeight);
+            g.drawString(m_About[i], (Handler.getWidth() - lineWidth) / 2, Handler.getHeight() / 4 + (24 * i) + fontHeight);
         }
 
-        g.setFont(Assets.getFont("vcr", Font.BOLD, 26f));
+        g.setFont(Assets.getFont("vcr", Font.ITALIC | Font.BOLD, 20f));
         int lineWidth = g.getFontMetrics().stringWidth(m_ToGoBack);
 
         if(m_Timer % 60 == 0) {

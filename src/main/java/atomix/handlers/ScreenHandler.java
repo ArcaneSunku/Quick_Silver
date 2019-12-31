@@ -66,6 +66,8 @@ public class ScreenHandler {
             init();
     }
 
+    public static int getScreen() { return m_Screen;}
+
     private static void init() {
         if(m_Screen != -1)
             m_Screens.get(m_Screen).init();

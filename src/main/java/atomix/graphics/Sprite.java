@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  * @author ArcaneSunku
  * @since 12/27/2019
  */
-public class Texture {
+public class Sprite {
 
     private BufferedImage m_Image;
 
@@ -18,12 +18,12 @@ public class Texture {
     public double angle;
     public int width, height;
 
-    public Texture(BufferedImage image) {
+    public Sprite(BufferedImage image) {
         m_Image = image;
     }
 
     public void draw(Graphics2D g) {
-        draw(g, 0, 0, 0);
+        rotate(g, m_Image, angle, (int) x, (int) y, width, height);
     }
 
     public void draw(Graphics2D g, int red, int green, int blue) {
