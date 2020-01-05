@@ -4,6 +4,8 @@ import atomix.Assets;
 import atomix.graphics.Sprite;
 import atomix.handlers.Handler;
 import atomix.handlers.ScreenHandler;
+import atomix.level.Level;
+import atomix.level.TitleLevel;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -15,11 +17,15 @@ import java.awt.event.KeyEvent;
 public class TitleScreen extends Screen {
 
     private Sprite m_Logo;
+    private Level m_Backdrop;
+
     private boolean m_Falling;
 
     @Override
     public void init() {
         m_Logo = new Sprite(Assets.getImage("Logo"));
+        m_Backdrop = new TitleLevel();
+        m_Backdrop.createLevel();
 
         m_Logo.width = m_Logo.getImage().getWidth() * 2;
         m_Logo.height = m_Logo.getImage().getHeight() * 2;
@@ -64,6 +70,7 @@ public class TitleScreen extends Screen {
 
     @Override
     public void render(Graphics2D g) {
+        m_Backdrop.draw(g);
         m_Logo.draw(g);
     }
 }
