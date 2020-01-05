@@ -8,7 +8,7 @@ import atomix.tiles.Grass;
 import atomix.tiles.Sand;
 import atomix.tiles.Tile;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -57,6 +57,8 @@ public class InGameScreen extends Screen {
         m_Player.angle = 0;
         m_Player.width = 64;
         m_Player.height = 64;
+
+        m_Player.tint(0, 0, 255 / 2);
     }
 
     @Override

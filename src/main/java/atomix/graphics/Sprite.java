@@ -12,7 +12,8 @@ import java.awt.image.BufferedImage;
  */
 public class Sprite {
 
-    private BufferedImage m_Image;
+    private Color m_TintColor;
+    private BufferedImage m_Image, m_Filtered, m_Tint;
 
     public float x, y;
     public double angle;
@@ -20,57 +21,63 @@ public class Sprite {
 
     public Sprite(BufferedImage image) {
         m_Image = image;
+        m_TintColor = new Color(0, 0, 0);
     }
 
     public void draw(Graphics2D g) {
-        rotate(g, m_Image, angle, (int) x, (int) y, width, height);
+        drawRotatedImage(g, m_Image, angle);
+
+        if(m_Tint != null && !m_TintColor.equals(Color.BLACK))
+            drawRotatedImage(g, m_Tint, angle);
     }
 
-    public void draw(Graphics2D g, int red, int green, int blue) {
-        rotate(g, m_Image, angle, (int) x, (int) y, width, height);
-        g.drawImage(tint(red, green, blue), (int) x, (int) y, width, height, null);
-    }
+    public void tint(int red, int green, int blue) {
+        if(m_Tint == null)
+            m_Tint = new BufferedImage(m_Image.getWidth(), m_Image.getHeight(), BufferedImage.TRANSLUCENT);
 
-    private BufferedImage tint(int red, int green, int blue) {
-        BufferedImage img = new BufferedImage(m_Image.getWidth(), m_Image.getHeight(), BufferedImage.TRANSLUCENT);
-        Color color = new Color(red, green, blue);
+        if(red != m_TintColor.getRed() || green != m_TintColor.getGreen() || blue != m_TintColor.getBlue()) {
+            m_TintColor = new Color(red, green, blue);
 
-        for(int x = 0; x < m_Image.getWidth(); x++) {
-            for(int y = 0; y < m_Image.getHeight(); y++) {
-                Color pixels = new Color(m_Image.getRGB(x, y), true);
-                int r = (pixels.getRed() + color.getRed()) / 2;
-                int g = (pixels.getGreen() + color.getGreen()) / 2;
-                int b = (pixels.getBlue() + color.getBlue()) / 2;
-                int a = pixels.getAlpha() / 2;
+            for (int x = 0; x < m_Image.getWidth(); x++) {
+                for (int y = 0; y < m_Image.getHeight(); y++) {
+                    Color pixels = new Color(m_Image.getRGB(x, y), true);
+                    int r = (pixels.getRed() + m_TintColor.getRed()) / 2;
+                    int g = (pixels.getGreen() + m_TintColor.getGreen()) / 2;
+                    int b = (pixels.getBlue() + m_TintColor.getBlue()) / 2;
+                    int a = pixels.getAlpha() / 2;
 
-                int rgba = (a << 24) | (r << 16) | (g << 8) | b;
-                img.setRGB(x, y, rgba);
+                    int rgba = (a << 24) | (r << 16) | (g << 8) | b;
+                    m_Tint.setRGB(x, y, rgba);
+                }
             }
         }
-
-        return img;
     }
 
-    private void rotate(Graphics2D og, BufferedImage img, double degree, int x, int y, int width, int height) {
+    private void drawRotatedImage(Graphics2D og, BufferedImage img, double degree) {
         double angle = Math.toRadians(degree);
-        Graphics2D g = img.createGraphics();
+        Graphics2D imageGraphics = img.createGraphics();
 
-        AffineTransform origin = g.getTransform();
+        AffineTransform origin = imageGraphics.getTransform();
         AffineTransform transform = new AffineTransform();
 
         transform.scale(1, 1);
         transform.rotate(angle, x + (width / 2d), y + (height / 2d));
 
         AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        BufferedImage filtered = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        op.filter(img, filtered);
+        if(m_Filtered == null)
+            m_Filtered = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+        op.filter(img, m_Filtered);
 
         og.setTransform(transform);
-        og.drawImage(img, x, y, width, height, null);
+        og.drawImage(img, (int) x, (int) y, width, height, null);
         og.setTransform(origin);
-        g.dispose();
+        imageGraphics.dispose();
     }
 
     public BufferedImage getImage() { return m_Image; }
 
+    public BufferedImage getTintedImage() { return m_Tint; }
+
+    public BufferedImage getFilteredImage() { return m_Filtered; }
 }
