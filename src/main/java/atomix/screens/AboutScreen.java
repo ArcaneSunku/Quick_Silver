@@ -3,6 +3,8 @@ package atomix.screens;
 import atomix.Assets;
 import atomix.handlers.Handler;
 import atomix.handlers.ScreenHandler;
+import atomix.level.AboutLevel;
+import atomix.level.Level;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,6 +18,7 @@ import java.awt.event.KeyEvent;
 public class AboutScreen extends Screen {
 
     private Color m_Color;
+    private Level m_Backdrop;
 
     private String[] m_About;
     private String m_ToGoBack;
@@ -35,6 +38,8 @@ public class AboutScreen extends Screen {
         m_Timer = 0;
 
         m_Color = Color.BLACK;
+        m_Backdrop = new AboutLevel();
+        m_Backdrop.createLevel();
     }
 
     @Override
@@ -47,6 +52,8 @@ public class AboutScreen extends Screen {
 
     @Override
     public void render(Graphics2D g) {
+        m_Backdrop.draw(g);
+
         g.setColor(Color.WHITE);
         g.setFont(Assets.getFont("vcr", 20f));
 
