@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'git.arcanesunku'
-version '12.31.2019-SNAPSHOT'
+version '1.4.2020-SNAPSHOT'
 
 sourceCompatibility = 1.8
 mainClassName = "Main"
