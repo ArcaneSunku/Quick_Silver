@@ -27,6 +27,7 @@ public class AboutScreen extends Screen {
 
     @Override
     public void init() {
+        m_Backdrop = new AboutLevel();
         m_About = new String[] {
                 "Quick-Silver is a project developed by Tahnner Shambaugh(ArcaneSunku)\n",
                 "in hopes of better understanding Java and it's inner functions.\n",
@@ -38,7 +39,6 @@ public class AboutScreen extends Screen {
         m_Timer = 0;
 
         m_Color = Color.BLACK;
-        m_Backdrop = new AboutLevel();
         m_Backdrop.createLevel();
     }
 
