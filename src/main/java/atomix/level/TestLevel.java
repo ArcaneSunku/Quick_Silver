@@ -8,6 +8,9 @@ import atomix.tiles.Tile;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * This is a temporary level, used for testing and so we
+ * can see some sort of graphics within the InGame Screen.
+ *
  * @author ArcaneSunku
  * @since 1/4/2020
  */

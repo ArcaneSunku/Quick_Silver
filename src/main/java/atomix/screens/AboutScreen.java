@@ -12,6 +12,10 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 /**
+ * This is where the About portion of the game
+ * will be held. Gives a little back story on why
+ * I ended up working on this.
+ *
  * @author ArcaneSunku
  * @since 12/30/2019
  */

@@ -6,6 +6,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
+ * Everything a Tile will need to be used
+ * within a Level. This is definitely going to change
+ * in the future.
+ *
  * @author ArcaneSunku
  * @since 12/31/2019
  */

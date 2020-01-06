@@ -4,6 +4,10 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 
 /**
+ * A Simple LUR Cache that will handle holding
+ * anything we want to store a lot of, but we're
+ * unsure how much space we'll need.
+ *
  * @author ArcaneSunku
  * @since 12/27/2019
  */

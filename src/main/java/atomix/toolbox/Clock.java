@@ -1,6 +1,9 @@
 package atomix.toolbox;
 
 /**
+ * A Simple clock. Nothing special will
+ * probably be done with this for some time.
+ *
  * @author ArcaneSunku
  * @since 12/27/2019
  */

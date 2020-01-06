@@ -6,7 +6,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * Loads images in and that's about it.
+ * This class is meant to handle any situation where
+ * we load from a file, whether it be images, fonts, or
+ * even some other, custom file types.
  *
  * @author ArcaneSunku
  * @since 12/27/2019

@@ -5,6 +5,10 @@ import atomix.handlers.input.KeyboardHandler;
 import atomix.handlers.input.MouseHandler;
 
 /**
+ * Handles everything Input related whether
+ * it be from your Keyboard, Mouse, or even
+ * a Controller.
+ *
  * @author ArcaneSunku
  * @since 12/27/2019
  */

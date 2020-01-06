@@ -1,6 +1,10 @@
 package atomix.toolbox;
 
 /**
+ * This class handles how the Levels are displayed
+ * along with how they will look when the camera needs
+ * to "move"
+ *
  * @author ArcaneSunku
  * @since 1/5/2020
  */

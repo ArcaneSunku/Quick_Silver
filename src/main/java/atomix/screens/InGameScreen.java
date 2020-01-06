@@ -9,6 +9,10 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 /**
+ * This is what displays everything that will happen
+ * inside of our game. This is probably where a chunk
+ * of the project is.
+ *
  * @author ArcaneSunku
  * @since 12/30/2019
  */

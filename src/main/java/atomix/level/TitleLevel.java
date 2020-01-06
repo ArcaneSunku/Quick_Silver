@@ -8,6 +8,9 @@ import atomix.tiles.Tile;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * The Level that we use to display the tile
+ * "background" behind the Title Screen.
+ *
  * @author ArcaneSunku
  * @since 1/4/2020
  */

@@ -5,6 +5,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 /**
+ * Handles everything that has to do with mouse input
+ * so we can use all of our mouse within the game.
+ *
  * @author ArcaneSunku
  * @since 12/30/2019
  */

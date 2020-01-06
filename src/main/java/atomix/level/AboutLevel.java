@@ -4,6 +4,9 @@ import atomix.tiles.Dirt;
 import atomix.tiles.Tile;
 
 /**
+ * The Level that we use to display the Dirt
+ * "background" behind the About Screen.
+ *
  * @author ArcaneSunku
  * @since 1/4/2020
  */

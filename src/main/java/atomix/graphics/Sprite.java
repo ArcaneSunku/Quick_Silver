@@ -7,6 +7,9 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 /**
+ * Handles everything a Sprite will need to be used in
+ * the game.
+ *
  * @author ArcaneSunku
  * @since 12/27/2019
  */

@@ -6,6 +6,10 @@ import atomix.tiles.Tile;
 import java.awt.*;
 
 /**
+ * Handles everything that a level will need.
+ * This is bound to change as I learn and develop
+ * new ways to handle these issues.
+ *
  * @author ArcaneSunku
  * @since 1/4/2020
  */

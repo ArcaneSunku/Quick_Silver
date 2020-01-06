@@ -1,9 +1,11 @@
 package atomix.graphics;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
+ * A collection of Sprites that would be used to
+ * handle animations or even act as an Atlas.
+ *
  * @author ArcaneSunku
  * @since 12/31/2019
  */

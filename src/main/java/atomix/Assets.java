@@ -7,6 +7,9 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 /**
+ * This is where all of our Assets will be loaded.
+ * We even provide a way to access these stored Assets.
+ *
  * @author ArcaneSunku
  * @since 12/27/2019
  */

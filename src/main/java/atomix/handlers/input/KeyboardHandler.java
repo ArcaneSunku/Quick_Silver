@@ -4,6 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
+ * Handles everything that has to do with keyboard input
+ * so we can use all of our keyboard within the game.
+ *
  * @author ArcaneSunku
  * @since 12/30/2019
  */

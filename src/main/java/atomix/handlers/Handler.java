@@ -4,6 +4,10 @@ import atomix.Game;
 import atomix.graphics.Window;
 
 /**
+ * The "Hub" for a lot of methods that will be used
+ * throughout the whole project. This is bound to change
+ * as I add more.
+ *
  * @author ArcaneSunku
  * @since 12/27/2019
  */

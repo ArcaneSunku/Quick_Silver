@@ -11,6 +11,9 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 /**
+ * This is what displays when we are on the
+ * Title of the game.
+ *
  * @author ArcaneSunku
  * @since 12/27/2019
  */
