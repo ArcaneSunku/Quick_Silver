@@ -34,8 +34,12 @@ public class SpriteSheet {
         m_Row = row;
     }
 
+    public Sprite getCellAt(int column, int row) {
+        return m_Sprites[column][row];
+    }
+
     public Sprite getSprite() {
-        return m_Sprites[m_Column][m_Row];
+        return getCellAt(m_Column, m_Row);
     }
 
 }

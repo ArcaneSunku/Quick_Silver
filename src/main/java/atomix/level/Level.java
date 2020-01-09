@@ -15,6 +15,8 @@ import java.awt.*;
  */
 public abstract class Level {
 
+    /* TODO - Manage the Camera and how it works within each Level */
+
     protected Tile[][] m_Tiles;
 
     protected float m_X, m_Y;
@@ -34,6 +36,8 @@ public abstract class Level {
      * Is meant for manually creating a level by hard coding it.
      */
     public void createLevel() { }
+
+    public abstract void update();
 
     public void draw(Graphics2D g) {
         if(m_Tiles != null) {

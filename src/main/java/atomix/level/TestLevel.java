@@ -4,6 +4,7 @@ import atomix.tiles.Dirt;
 import atomix.tiles.Grass;
 import atomix.tiles.Sand;
 import atomix.tiles.Tile;
+import atomix.toolbox.Camera;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,8 +17,21 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class TestLevel extends Level {
 
+    private Camera m_Camera;
+
     public TestLevel(int tileSize) {
         super(tileSize);
+        m_Camera = new Camera();
+    }
+
+    @Override
+    public void update() {
+        for(int x = 0; x < m_Width; x++) {
+            for(int y = 0; y < m_Height; y++) {
+                m_Tiles[x][y].setX(m_Tiles[x][y].getX() + m_Camera.getX());
+                m_Tiles[x][y].setY(m_Tiles[x][y].getY() + m_Camera.getY());
+            }
+        }
     }
 
     @Override
@@ -47,5 +61,9 @@ public class TestLevel extends Level {
                 m_Tiles[i][j] = t;
             }
         }
+    }
+
+    public Camera getCamera() {
+        return m_Camera;
     }
 }

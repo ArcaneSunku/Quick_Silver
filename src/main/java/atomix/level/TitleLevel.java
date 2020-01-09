@@ -21,6 +21,11 @@ public class TitleLevel extends Level {
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     public void createLevel() {
         initLevel(64, 64);
         ThreadLocalRandom rand = ThreadLocalRandom.current();

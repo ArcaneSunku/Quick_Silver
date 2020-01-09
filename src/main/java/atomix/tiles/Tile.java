@@ -42,13 +42,29 @@ public abstract class Tile {
     }
 
     public void setSize(int width, int height) {
-        m_Sprite.width = width;
-        m_Sprite.height = height;
+        setWidth(width);
+        setHeight(height);
     }
 
     public void setPosition(float xPos, float yPos) {
-        m_Sprite.x = xPos;
-        m_Sprite.y = yPos;
+        setX(xPos);
+        setY(yPos);
+    }
+
+    public void setX(float x) {
+        m_Sprite.x = x;
+    }
+
+    public void setY(float y) {
+        m_Sprite.y = y;
+    }
+
+    public void setWidth(int width) {
+        m_Sprite.width = width;
+    }
+
+    public void setHeight(int height) {
+        m_Sprite.height = height;
     }
 
     public float getX() { return m_Sprite.x; }

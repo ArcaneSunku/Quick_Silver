@@ -30,6 +30,8 @@ public class InGameScreen extends Screen {
     public void update() {
         if(Handler.keyJustPressed(KeyEvent.VK_ESCAPE))
             ScreenHandler.setScreen(0);
+
+
     }
 
     @Override

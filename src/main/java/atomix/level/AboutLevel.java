@@ -17,6 +17,11 @@ public class AboutLevel extends Level {
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     public void createLevel() {
         initLevel(64, 64);
 
