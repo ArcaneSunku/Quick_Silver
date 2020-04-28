@@ -43,10 +43,12 @@ public abstract class Level {
         if(m_Tiles != null) {
             for(int x = 0; x < m_Width; x++) {
                 for(int y = 0; y < m_Height; y++) {
-                    if (m_Tiles[x][y].getX() + m_TileWidth < 0 || m_Tiles[x][y].getY() + m_TileHeight < 0 || m_Tiles[x][y].getX() > Handler.getWidth() || m_Tiles[x][y].getY() > Handler.getHeight())
+                    Tile t = m_Tiles[x][y];
+
+                    if (t.getX() + m_TileWidth < 0 || t.getY() + m_TileHeight < 0 || t.getX() > Handler.getWidth() || t.getY() > Handler.getHeight())
                             continue;
 
-                    m_Tiles[x][y].render(g);
+                    t.render(g);
                 }
             }
         }

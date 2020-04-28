@@ -7,7 +7,7 @@ import atomix.handlers.ScreenHandler;
 import atomix.level.Level;
 import atomix.level.TitleLevel;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -19,10 +19,13 @@ import java.awt.event.KeyEvent;
  */
 public class TitleScreen extends Screen {
 
+    private final String PRESS_START = "Press Space to play!";
+
     private Sprite m_Logo;
     private Level m_Backdrop;
 
-    private boolean m_Falling, m_Spinning;
+    private float m_startX, m_startY;
+    private boolean m_Falling, m_Spinning, m_DrawStartText;
 
     @Override
     public void init() {
@@ -37,8 +40,12 @@ public class TitleScreen extends Screen {
         m_Logo.x = (Handler.getWidth() - m_Logo.width) / 2f;
         m_Logo.y = -m_Logo.height * 2;
 
+        m_startX = 0;
+        m_startY = ((Handler.getHeight() - m_Logo.height) / 2f) + m_Logo.height + 24f;
+
         m_Falling = true;
         m_Spinning = true;
+        m_DrawStartText = false;
     }
 
     @Override
@@ -58,15 +65,17 @@ public class TitleScreen extends Screen {
             m_Falling = false;
         }
 
-        if(Handler.keyJustPressed(KeyEvent.VK_ESCAPE))
-            Handler.stopRunning();
-
         if(!m_Falling) {
+            if(Handler.keyJustPressed(KeyEvent.VK_ESCAPE))
+                Handler.stopRunning();
+
             if (Handler.keyJustPressed(KeyEvent.VK_SPACE))
                 ScreenHandler.setScreen(1);
 
             if (Handler.keyJustPressed(KeyEvent.VK_BACK_SPACE))
                 ScreenHandler.setScreen(2);
+
+            m_DrawStartText = true;
         } else {
             m_Logo.y += 2.25;
 
@@ -83,7 +92,17 @@ public class TitleScreen extends Screen {
 
     @Override
     public void render(Graphics2D g) {
+        g.setFont(Assets.getFont("vcr", Font.BOLD, 24f));
+
+        if(m_startX == 0)
+            m_startX = (Handler.getWidth() - g.getFontMetrics().stringWidth(PRESS_START)) / 2f;
+
         m_Backdrop.draw(g);
         m_Logo.draw(g);
+
+        if(m_DrawStartText) {
+            g.setColor(Color.CYAN);
+            g.drawString(PRESS_START, m_startX, m_startY);
+        }
     }
 }

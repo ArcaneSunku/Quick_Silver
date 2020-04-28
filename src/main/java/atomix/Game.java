@@ -22,8 +22,8 @@ import java.awt.image.BufferStrategy;
  */
 public class Game implements Runnable {
     private final int WIDTH = 800, HEIGHT = WIDTH / 16 * 9;
+    private static Handler handler = null;
 
-    private Handler m_Handler;
     private ScreenHandler m_ScreenHandler;
     private Thread m_Thread;
     private Window m_Window;
@@ -35,6 +35,7 @@ public class Game implements Runnable {
 
     public Game() {
         m_Window = new Window("Quick Silver", WIDTH, HEIGHT);
+        handler = new Handler(this, m_Window);
     }
 
     @Override
@@ -116,14 +117,15 @@ public class Game implements Runnable {
     }
 
     private void init() {
-        m_Handler = new Handler(this, m_Window);
         m_ScreenHandler = new ScreenHandler();
         Assets.initialize();
 
         m_ScreenHandler.addScreen(new TitleScreen());
         m_ScreenHandler.addScreen(new InGameScreen());
         m_ScreenHandler.addScreen(new AboutScreen());
+
         ScreenHandler.setScreen(0);
+
         m_Screens = new String[] {
                 "Title",
                 "In Game",
