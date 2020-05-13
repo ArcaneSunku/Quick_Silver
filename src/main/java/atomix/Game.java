@@ -58,10 +58,12 @@ public class Game implements Runnable {
             if(m_Window.hasClosed() || m_Window.isClosing())
                 stopRunning();
 
+            // sets up how we keep time accurate
             long now = System.nanoTime();
             delta += (now - last_time) / nanoseconds_per_tick;
             last_time = now;
 
+            // if there's a skip, we adjust and then update everything
             while(delta >= 1) {
                 update();
                 should_render = true;
@@ -70,6 +72,7 @@ public class Game implements Runnable {
                 delta -= 1;
             }
 
+            // We give the Thread a break as to reduce resource usage
             try {
                 Thread.sleep(3);
             } catch (InterruptedException e) {
@@ -82,6 +85,7 @@ public class Game implements Runnable {
                 should_render = false;
             }
 
+            // Used for the title frames and tick display
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 m_Frames = frames;

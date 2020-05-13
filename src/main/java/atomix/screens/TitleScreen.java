@@ -1,6 +1,7 @@
 package atomix.screens;
 
 import atomix.Assets;
+import atomix.audio.Sound;
 import atomix.graphics.Sprite;
 import atomix.handlers.Handler;
 import atomix.handlers.ScreenHandler;
@@ -24,6 +25,8 @@ public class TitleScreen extends Screen {
     private Sprite m_Logo;
     private Level m_Backdrop;
 
+    private Sound snd;
+
     private float m_startX, m_startY;
     private boolean m_Falling, m_Spinning, m_DrawStartText;
 
@@ -46,10 +49,16 @@ public class TitleScreen extends Screen {
         m_Falling = true;
         m_Spinning = true;
         m_DrawStartText = false;
+
+        snd = new Sound();
     }
 
     @Override
     public void update() {
+        if(Handler.keyJustPressed(KeyEvent.VK_DOWN)) {
+            snd.playSound("blip");
+        }
+
         if(m_Logo.y > 0 && m_Spinning) {
             if (Math.abs(m_Logo.angle) >= 360) {
                 m_Logo.angle = 0;
